@@ -183,7 +183,7 @@ Shader "Hidden/UnityOutline"
             ENDCG
         }
 
-		// #4: final postprocessing pass
+		// #5: final postprocessing pass
         Pass
         {
             ZTest Always
@@ -206,6 +206,9 @@ Shader "Hidden/UnityOutline"
                 half4 col = tex2D(_MainTex, i.uv);
                
                 bool isSelected = col.a > 0.9;
+                bool inFront = col.g > 0.0;
+				bool backMask = col.r == 0.0;
+
                 float alpha = saturate(col.b * 10);
                 if (isSelected)
                 {
@@ -214,13 +217,16 @@ Shader "Hidden/UnityOutline"
                     if (any(i.uv - _MainTex_TexelSize.xy*2 < 0) || any(i.uv + _MainTex_TexelSize.xy*2 > 1))
                         alpha = 1;
                 }
-                bool inFront = col.g > 0.0;
+				
                 if (!inFront)
                 {
                     alpha *= 0.3;
-                    if (isSelected) // no tinting at all for occluded selection
-                        alpha = 0;
                 }
+
+                if (backMask && isSelected){
+                    alpha = 0;
+				}
+
                 float4 UnityOutlineColor = float4(_OutlineColor.rgb,alpha);
                 return UnityOutlineColor;
             }
