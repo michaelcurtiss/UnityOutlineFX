@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d494edea4bdf1f746a3a4047cbf1c00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutlineColor: {r: 1, g: 0, b: 0, a: 0.043137256}
+  OutlineColor: {r: 1, g: 0, b: 0, a: 0.26666668}
   BufferDrawEvent: 18
   Downsample: 1
   BlurSize: 0.5

@@ -183,7 +183,7 @@ Shader "Hidden/UnityOutline"
             ENDCG
         }
 
-		// #5: final postprocessing pass
+		// #4: final postprocessing pass
         Pass
         {
             ZTest Always
@@ -223,7 +223,8 @@ Shader "Hidden/UnityOutline"
                     alpha *= 0.3;
                 }
 
-                if (backMask && isSelected){
+                if (backMask && isSelected)
+                {
                     alpha = 0;
 				}
 
