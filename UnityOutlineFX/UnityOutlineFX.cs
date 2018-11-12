@@ -101,8 +101,12 @@ public class UnityOutlineFX : MonoBehaviour
     
             foreach (var render in collection)
             {
-                _commandBuffer.DrawRenderer(render, _outlineMaterial, 0, 1);
-                _commandBuffer.DrawRenderer(render, _outlineMaterial, 0, 0);
+                //Effect for all material in default shader
+                for (int i = 0; i < render.materials.Length; i++)
+                {
+                    _commandBuffer.DrawRenderer(render, _outlineMaterial, i, 1);
+                    _commandBuffer.DrawRenderer(render, _outlineMaterial, i, 0);
+                }
             }
         }
         
